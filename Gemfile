@@ -9,6 +9,9 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'require_all'
+gem 'byebug'
+gem 'activerecord', '~> 4.2', '>= 4.2.6', :require => 'active_record'
+gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 
 group :test do
       gem 'rspec'
