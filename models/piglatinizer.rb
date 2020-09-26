@@ -14,16 +14,33 @@ class PigLatinizer
     end
   end
 
+  def vowel?(letter)
+    letter.match(/[aeiouAEIOU]/)
+  end
+
   def piglatinize_word(word) #word
-    if word[0] == "a" || word[0] == "e" || word[0] == "o" || word[0] == "u" || word[0] == "i"
+    if vowel?(word[0])
+      first_letter = word[0]
       word[0] = ""
-      word << "way"
-    elsif word.start_with?("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z") #if it starts with one consonant, do this.
+      word << "#{first_letter}way"
+    elsif !vowel?(word[0]) && !vowel?(word[1]) && !vowel?(word[2])
+      first_letter = word[0]
+      second_letter = word[1]
+      third_letter = word[2]
       word[0] = ""
-      word << "#{word[0]}ay"
-    elsif word[0] != "a" && word[0] != "e" && word[0] != "o" && word[0] != "u" && word[0] != "i" && word[1] != "a" && word[1] != "e" && word[1] != "o" && word[1] != "u" && word[1] != "i"
-      word[0, 2] = ""
-      word << "#{word[0, 2]}ay"
+      word[1] = ""
+      word[2] = ""
+      word << "#{first_letter + second_letter + third_letter}ay"
+    elsif !vowel?(word[0]) && !vowel?(word[1])
+      first_letter = word[0]
+      second_letter = word[1]
+      word[0] = ""
+      word[1] = ""
+      word << "#{first_letter + second_letter}ay"
+    elsif !vowel?(word[0])
+      first_letter = word[0]
+      word[0] = ""
+      word << "#{first_letter}ay"
       #CONSONANTS = (('a'..'z').to_a - 'aeiou'.chars).join
       #=> "bcdfghjklmnpqrstvwxyz"
 
