@@ -11,7 +11,7 @@ class PigLatinizer
   def piglatinize_sentence(words)
     words.map do |word|
       piglatinize_word(word)
-    end
+    end.join(" ")
   end
 
   def vowel?(letter)
@@ -20,22 +20,20 @@ class PigLatinizer
 
   def piglatinize_word(word) #word
     if vowel?(word[0])
-      first_letter = word[0]
-      word[0] = ""
-      word << "#{first_letter}way"
+      word << "way"
     elsif !vowel?(word[0]) && !vowel?(word[1]) && !vowel?(word[2])
       first_letter = word[0]
       second_letter = word[1]
       third_letter = word[2]
       word[0] = ""
-      word[1] = ""
-      word[2] = ""
+      word[0] = ""
+      word[0] = ""
       word << "#{first_letter + second_letter + third_letter}ay"
     elsif !vowel?(word[0]) && !vowel?(word[1])
       first_letter = word[0]
       second_letter = word[1]
       word[0] = ""
-      word[1] = ""
+      word[0] = ""
       word << "#{first_letter + second_letter}ay"
     elsif !vowel?(word[0])
       first_letter = word[0]
